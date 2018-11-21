@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class SerializationToFilePersistence implements FullPersistence {
+public class SerializationToFilePersistence<T extends AddressBook> implements FullPersistence {
 	private final String userHomePath;
 	private final File destinationPath;
 
@@ -45,34 +45,7 @@ public class SerializationToFilePersistence implements FullPersistence {
 		}
 	}
 
-	@Override
-	public void storeBook(AddressBook book, String name) throws AddressBookException {
-		FileOutputStream os = null;
-		ObjectOutputStream oos = null;
-		
-		try {
-			createDestDir();
-			File destObj = new File(getDestDir() + "/" + name);
-			os = new FileOutputStream(destObj);
-			oos = new ObjectOutputStream(os);
-			oos.writeObject(book);
-		} catch (IOException e) {
-			throw new AddressBookException(e.getClass().getName() + ": in " + e.getMessage());
-		} finally {
-			try {
-				if (oos != null) {
-					oos.close();
-				}
-			} catch (IOException e2) {
-				throw new AddressBookException(e2.getClass().getName() + ": in " + e2.getMessage());
-			}
-			try {
-				os.close();
-			} catch (IOException e2) {
-				throw new AddressBookException(e2.getClass().getName() + ": in " + e2.getMessage());
-			}
-		}
-	}
+
 
 	private void createDestDir() throws IOException {
 		if (!destinationPath.exists()) {
@@ -90,5 +63,11 @@ public class SerializationToFilePersistence implements FullPersistence {
 		}
 		
 		return this.destinationPath;
+	}
+
+	@Override
+	public void storeBook(AddressBook book, String name) throws AddressBookException {
+		// TODO Auto-generated method stub
+		
 	}
 }
