@@ -7,7 +7,7 @@ public class PersonTestImproved {
 		meinAdressbuch.addPerson(new Person("Christian", "Boehm"));
 		meinAdressbuch.addPerson(new Person("Heinz", "Erhardt"));
 		
-		System.out.println(meinAdressbuch.getPersonByLastName("Boeh"));
+		System.out.println(meinAdressbuch.getPersonByLastName("Boehm"));
 
 	}
 

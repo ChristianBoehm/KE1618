@@ -8,7 +8,7 @@ public class Main {
 
      CharEingabeStrom cs;
      cs = new StringLeser( s );
-//     cs = new UmlautSzFilter( cs );
+     //cs = new UmlautSzFilter( cs );
      cs = new GrossBuchstabenFilter( cs );
      cs = new UmlautSzFilter(cs);
 
